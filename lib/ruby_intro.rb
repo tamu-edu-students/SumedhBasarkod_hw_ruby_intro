@@ -27,20 +27,52 @@ end
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  # return Hello followed by name
+  return "Hello, " + name
 end
 
 def starts_with_consonant?(string)
-  # YOUR CODE HERE
+  # regex 
+  regex = /^[^aeiouAEIOU\W]/i
+  if regex.match(string) == nil
+    return false
+  else
+    return true
+  end
 end
 
 def binary_multiple_of_4?(string)
-  # YOUR CODE HERE
+  # First clause verifies that string is not empty, 
+  # second clause verifies that each chatr
+  if !string.empty? and string.chars.all? {|x| x =~ /[01]/} and (string.to_i(2) % 4 == 0)
+    return true
+  end
+  return false
 end
 
 # Part 3
 
 # Object representing a book
 class BookInStock
-  # YOUR CODE HERE
+
+  # constructor to init isbn and price
+  def initialize(isbn, price)
+    if price<=0
+      raise ArgumentError, "Price should not positive"
+    end
+    if isbn.empty?
+      raise ArgumentError, "Price should not positive"
+    end
+    @isbn = isbn
+    @price = price
+  end
+  
+  # Getters and setters
+  attr_accessor :isbn
+  attr_accessor :price
+
+  def price_as_string()
+    # Prefix price with $ and convert price to float number formatted with 2 decimal points
+    return "$" + "%0.2f" % [@price.to_f]
+  end
 end
